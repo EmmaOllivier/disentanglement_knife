@@ -54,11 +54,11 @@ def test_per_subject():
     g = torch.Generator()
     g.manual_seed(seed)
 
-    save_path="/home/ens/eollivier/mi_disentanglement/models/test/1/"
-    Biovid_img_all = '/state/share1/datasets/Biovid/sub_red_classes_img/'
+    save_path="../models/"
+    Biovid_img_all = '../Biovid/sub_red_classes_img/'
     tr_test = utils.data_adapt(RESOLUTION)
 
-    biovid_annot_test = '/home/ens/eollivier/Biovid_corrected/test_set.csv'
+    biovid_annot_test = '../test_set.csv'
     dataset_test = dataloader.Dataset_Biovid_image_binary_class(Biovid_img_all,biovid_annot_test,transform = tr_test.transform,IDs = None,nb_image = None,preload=False)
 
     test_loader = torch.utils.data.DataLoader(dataset_test, batch_size=1, shuffle=False, num_workers=4, worker_init_fn=seed_worker, generator=g)
@@ -68,8 +68,8 @@ def test_per_subject():
     encoder=resnet18(weights=ResNet18_Weights.IMAGENET1K_V1).to(device)
     fc_expression = model.Classif(1,False).to(device)
 
-    encoder.load_state_dict(torch.load(save_path+'encoder_0lamb.pt'))
-    fc_expression.load_state_dict(torch.load(save_path+'Affect_0lamb.pt'))
+    encoder.load_state_dict(torch.load(save_path+'...pt'))
+    fc_expression.load_state_dict(torch.load(save_path+'...pt'))
 
 
     encoder.eval()
@@ -136,11 +136,11 @@ def test():
     g = torch.Generator()
     g.manual_seed(seed)
     bs = 20
-    save_path="/home/ens/eollivier/mi_disentanglement/models/resnet18_C_pretrained_full/1/"
-    Biovid_img_all = '/state/share1/datasets/Biovid/sub_red_classes_img/'
+    save_path="../models/"
+    Biovid_img_all = '../Biovid/sub_red_classes_img/'
     tr_test = utils.data_adapt(RESOLUTION)
 
-    biovid_annot_test = '/home/ens/eollivier/Biovid_corrected/test_set.csv'
+    biovid_annot_test = '../test_set.csv'
     dataset_test = dataloader.Dataset_Biovid_image_binary_class(Biovid_img_all,biovid_annot_test,transform = tr_test.transform,IDs = None,nb_image = None,preload=False)
 
     test_loader = torch.utils.data.DataLoader(dataset_test, batch_size=bs, shuffle=False, num_workers=4, worker_init_fn=seed_worker, generator=g)
@@ -150,8 +150,8 @@ def test():
     
     fc_expression = model.Classif(1,False).to(device)
 
-    encoder.load_state_dict(torch.load(save_path+'encoder_0.9lamb.pt'))
-    fc_expression.load_state_dict(torch.load(save_path+'Affect_0.9lamb.pt'))
+    encoder.load_state_dict(torch.load(save_path+'...pt'))
+    fc_expression.load_state_dict(torch.load(save_path+'....pt'))
 
     print('---- testing ----')
     encoder.eval()
@@ -203,12 +203,12 @@ def test_per_video_softmax_output():
 
     fold=1
 
-    save_path="/home/ens/eollivier/mi_disentanglement/models/test/"+str(fold)+"/"
-    Biovid_img_all = '/state/share1/datasets/Biovid/sub_red_classes_img/'
+    save_path="../models/"+str(fold)+"/"
+    Biovid_img_all = '../Biovid/sub_red_classes_img/'
 
     tr_test = utils.data_adapt(RESOLUTION)
 
-    biovid_annot_test = '/home/ens/eollivier/Biovid_corrected/test_set.csv'
+    biovid_annot_test = '../test_set.csv'
 
 
     dataset_test = dataloader.Dataset_Biovid_image_binary_class(Biovid_img_all,biovid_annot_test,transform = tr_test.transform,IDs = None,nb_image = None,preload=False)
@@ -222,8 +222,8 @@ def test_per_video_softmax_output():
     fc_expression = model.Classif(1,False).to(device)
 
 
-    encoder.load_state_dict(torch.load(save_path+'encoder_0lamb.pt'))
-    fc_expression.load_state_dict(torch.load(save_path+'Affect_0lamb.pt'))
+    encoder.load_state_dict(torch.load(save_path+'...pt'))
+    fc_expression.load_state_dict(torch.load(save_path+'...pt'))
 
     threshold = [round(x * 0.05, 2) for x in range(0, 22)]
     #threshold=[0.25]
