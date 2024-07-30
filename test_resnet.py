@@ -13,7 +13,6 @@ import model
 import numpy as np
 import pandas as pd
 import dataloader
-import data_loader
 import utils
 import PIL.Image as Image
 from tqdm import tqdm
